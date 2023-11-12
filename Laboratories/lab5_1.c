@@ -4,7 +4,7 @@
 #include <math.h>
 
 double integral_func(double a, double b, double N);
-double func_to_integrate(double x, int degree);
+double func_to_integrate(double x);
 
 int main(void) {
     double a;
@@ -25,31 +25,22 @@ int main(void) {
 
 double integral_func(double a, double b, double N){
 
-    /*int degree;
-    printf("Enter the degree of polynomial function ");
-    scanf("%d", &degree);*/
 
     double suma;
     double delta_x = (b - a) / N;
     for ( double i = 0; i < N; ++i)
     {
         double m = a + (i - 0.5) * delta_x;
-        suma += (pow(2*m,3)+pow(m, 2)+3*(m)) * delta_x;
+        suma += func_to_integrate(m) * delta_x;
     }
     
     return suma;
 }
 
-double func_to_integrate(double x, int degree)
+double func_to_integrate(double x)
 {
 
-    double polynomial_func;
-
-    for ( double i = 0; i <= degree; i++)
-    {
-        
-        polynomial_func += (pow(x, i));
-    }
-    return polynomial_func;
+    double function = x * x * x + x * x - 4;
+    return function;
     
 }

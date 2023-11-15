@@ -3,19 +3,19 @@
 #include <string.h>
 #include <math.h>
 
-double integral_func(double a, double b, double N);
+double integral_func(int a, int b, int N);
 double func_to_integrate(double x);
 
 int main(void) {
     double a;
     printf("Enter the lower limit a ");
-    scanf("%lf", &a);
+    scanf("%d", &a);
     double b;
     printf("Enter the upper limit b ");
-    scanf(" %lf", &b);
+    scanf(" %d", &b);
     double N;
     printf("Enter the N of sum ");
-    scanf(" %lf", &N);
+    scanf(" %d", &N);
 
     double integral = integral_func(a, b, N);
     printf("%lf", integral);
@@ -23,7 +23,7 @@ int main(void) {
     return 0;
 }
 
-double integral_func(double a, double b, double N){
+double integral_func(int a, int b, int N){
 
 
     double suma;

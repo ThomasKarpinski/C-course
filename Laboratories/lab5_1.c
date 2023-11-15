@@ -3,6 +3,10 @@
 #include <string.h>
 #include <math.h>
 
+/*Program calculate an integral by summing.
+User enters the interval and N number of summs
+User also defying function to integrade in func_to_intergrade*/
+
 double integral_func(int a, int b, int N);
 double func_to_integrate(double x);
 
@@ -24,7 +28,7 @@ int main(void) {
 }
 
 double integral_func(int a, int b, int N){
-
+/*function responsible for calculating the integral*/
 
     double suma;
     double delta_x = (b - a) / N;
@@ -40,7 +44,7 @@ double integral_func(int a, int b, int N){
 double func_to_integrate(double x)
 {
 
-    double function = x * x * x + x * x - 4;
+    double function = x * x * x + x * x - 4; // defying the arbitrary function
     return function;
     
 }

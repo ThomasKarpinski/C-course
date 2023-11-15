@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
+/*Program finds the root of the function defined by user */
+
 float function_to_find_root(float x) {
     // Replace this with any function that has a root in the chosen interval
     return x * x * x + x * x - 4;

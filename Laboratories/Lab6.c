@@ -20,7 +20,7 @@ int main(void) {
 
     for (int i = 1; i < TRDAYS + 1; ++i)
     {
-        float arbitrary_number = rand() % (110 - 90 + 1) + 90;
+        float arbitrary_number = rand() % 21 + 90;
         history[i] = arbitrary_number * history[i - 1] / 100;
         //printf("Day: %d, Value: %f \n", i, history[i-1]);
 
@@ -42,12 +42,10 @@ int main(void) {
     for (int j = 0; j < PLAYERNR; ++j)
     {
         float result = wealthOfPlayers[j];
-        printf("Player: %d, Wealth: %f \n", j+1, result);
+        printf("Player: %d, Wealth: %f \n", j + 1, wealthOfPlayers[j]);
     }
-    
-    int length = PLAYERNR;
 
-    bubble_sort(wealthOfPlayers, length);
+    bubble_sort(wealthOfPlayers, PLAYERNR);
 
     free(wealthOfPlayers);
     
@@ -58,11 +56,11 @@ float* trade_game(int numPlayers, float tradeHistory[]){
     
     srand((unsigned int)time(NULL));
     
-    float wealths[PLAYERNR];
-    float valuesOftocks[PLAYERNR];
+    float wealths[numPlayers];
+    float valuesOftocks[numPlayers];
 
     /*For each player*/
-    for (int i = 0; i < PLAYERNR; i++) {
+    for (int i = 0; i < numPlayers; i++) {
         wealths[i] = 100;
         valuesOftocks[i] = 0;
 
@@ -101,14 +99,14 @@ float* trade_game(int numPlayers, float tradeHistory[]){
     }
     /*At the end we add the value of stocks
     to value of money for each player*/
-    for (int k = 0; k < PLAYERNR; ++k)
+    for (int k = 0; k < numPlayers; ++k)
     {
         wealths[k] += valuesOftocks[k];
     }
     
     // Return a pointer to the array
-    float *result = malloc(PLAYERNR * sizeof(float));
-    for (int k = 0; k < PLAYERNR; ++k) {
+    float *result = malloc(numPlayers * sizeof(float));
+    for (int k = 0; k < numPlayers; ++k) {
         result[k] = wealths[k];
     }
     return result;

@@ -107,7 +107,7 @@ float* trade_game(int numPlayers, float tradeHistory[]){
     // Return a pointer to the array
     float *result = malloc(numPlayers * sizeof(float));
     for (int k = 0; k < numPlayers; ++k) {
-        result[k] = wealths[k];
+        result[k] = valuesOftocks[k] * tradeHistory[TRDAYS - 1];
     }
     return result;
     

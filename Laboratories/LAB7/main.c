@@ -1,27 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#include "tradestocks.c"
+#include <time.h>
 #include "tradestocks.h"
 
-int main() {
-    int JulTemp[31];
-    for(int i = 0; i < 31; i++) {
-        JulTemp[i] = 18 + rand() % (28 - 18 + 1);
+#define TRDAYS 500
+#define PLAYERNR 3
+
+int main(void) {
+    srand((unsigned int)time(NULL));
+
+    float history[TRDAYS];
+    history[0] = 13.9;
+    
+    float max = history[0];
+    float min = history[0];
+
+    for (int i = 1; i < TRDAYS + 1; ++i) {
+        float arbitrary_number = rand() % 21 + 90;
+        history[i] = arbitrary_number * history[i - 1] / 100;
+
+        if (max < history[i]) {
+            max = history[i];
+        }
+        if (min > history[i]) {
+            min = history[i];
+        }
     }
-    printTemperature(JulTemp, sizeof(JulTemp) / sizeof(JulTemp[0]));
 
-    int value1 = 50;
-    int value2;
-    int *intPtr = &value1;
+    printf("Max value: %f, Min value: %f \n", max, min);
 
-    printf("The value of the object pointed to by intPtr is %d\n", *intPtr);
-    value2 = *intPtr;
-    printf("The value of value2 is %d\n", value2);
+    float *wealthOfPlayers = trade_game(PLAYERNR, history);
+    for (int j = 0; j < PLAYERNR; ++j) {
+        printf("Player: %d, Wealth: %f \n", j + 1, wealthOfPlayers[j]);
+    }
 
-    printf("The address of value1 is %p\n", &value1);
-    printf("The address stored in intPtr is %p\n", intPtr);
-    printf("Is the value printed the same as value1's address? %s\n", intPtr == &value1 ? "Yes" : "No");
+    bubble_sort(wealthOfPlayers, PLAYERNR);
 
+    free(wealthOfPlayers);
+    
     return 0;
 }

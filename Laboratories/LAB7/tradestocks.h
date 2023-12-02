@@ -1,7 +1,9 @@
-#ifndef TRADE_STOCKS_H
-#define TRADE_STOCKS_H
+#ifndef TRADESTOCKS_H
+#define TRADESTOCKS_H
 
-void printTemperature(int arr[], int size);
-int compare(const void *a, const void *b);
+#define TRDAYS 500
 
-#endif // TRADE_STOCKS_H
+float* trade_game(int numPlayers, float tradeHistory[]);
+void bubble_sort(float array[], int length);
+
+#endif

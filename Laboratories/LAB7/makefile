@@ -1,11 +1,10 @@
-main: main.o trade-stocks.o
-    gcc -o main main.o trade-stocks.o
+CC = gcc
+CFLAGS = -Wall -Wextra
 
-main.o: main.c trade-stocks.h
-    gcc -c main.c
+all: main
 
-trade-stocks.o: trade-stocks.c trade-stocks.h
-    gcc -c trade-stocks.c
+main: main.c tradestocks.c tradestocks.h
+	$(CC) $(CFLAGS) -o main main.c tradestocks.c
 
 clean:
-    rm -f *.o main
+	rm -f main
